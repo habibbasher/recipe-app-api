@@ -1,0 +1,17 @@
+# Specify language
+language: python
+
+# Specify version of the language
+python:
+ - '3.6'
+
+# Specify services
+services:
+ - docker
+
+# Specify before script
+before_script: pip install docker-compose
+
+# Define script to be executed
+script:
+ - docker-compose run app sh -c 'python manage.py test && flake8'
