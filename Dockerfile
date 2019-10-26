@@ -1,5 +1,5 @@
 # Define base image
-FROM python:3.7.4-alpine
+FROM python:3.7-alpine
 
 # It does not allow python to buffer
 ENV PYTHONUNBUFFERED 1
