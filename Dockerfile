@@ -5,7 +5,14 @@ FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
+# Postgres db specific commands
+RUN apk add --update --no-cache postgresql-client
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+    gcc libc-dev linux-headers postgresql-dev
+
 RUN pip install -r /requirements.txt
+# Remove unnecessary files generated from postgres specific commands
+RUN apk del .tmp-build-deps
 
 RUN mkdir /app
 # Defining working directory on docker environment
